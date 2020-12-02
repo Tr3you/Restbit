@@ -1,0 +1,120 @@
+{% extends "reservaciones/base.html" %}
+
+{% block title %}Realizar pedido{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="h1 font-weight-bold text-center mt-5">Realizar pedido</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <form action="/resumen_pedido/" method="POST">{% csrf_token %}
+                    <!--SECCION PARA AGREGAR ENTRANTES-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-left mt-4" style="font-size:x-large;">Entrantes</p>
+                        </div>
+                    </div>
+                    <div id="input-entrantes">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="label-input d-block" for="entrante1">Entrante 1</label>
+                                <input type="text" list="entrantesList1"  class="form-control d-inline" name="entrante1" id="entrante1" style="width: 80%;" required>
+                                <datalist id="entrantesList1"> 
+                                    <option value="PE1">Crema de Boletus y Trufa</option>
+                                    <option value="PE2">Croquetas de Jamón Ibérico</option>
+                                    <option value="PE3">Mini Tatín de Manzana y Foie</option>
+                                    <option value="PE4">Espiral de Langostino y Kimchi</option>
+                                    <option value="PE5">Piruleta de Queso de Cabra</option>
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="button" value="Añadir otro entrante" id="agregarBtnEntrante" onclick="agregarEntrante()" class="btn btn-primary" style="width: 70%; height: 50px;">
+                        </div>
+                    </div>
+                    <!--SECCION PARA AGREGAR PLATOS FUERTES-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-left mt-4" style="font-size:x-large;">Platos fuertes</p>
+                        </div>
+                    </div>
+                    <div id="input-fuertes">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="label-input d-block" for="fuerte1">Plato Fuerte 1</label>
+                                <input type="text" list="fuertesList1"  class="form-control d-inline" name="fuerte1" id="fuerte1" style="width: 80%;" required>
+                                <datalist id="fuertesList1"> 
+                                    <option value="PF1">Sopa de Mariscos</option>
+                                    <option value="PF2">Albondigas de Pavo con Crema de Queso Parmesano</option>
+                                    <option value="PF3">Pollo con Salsa Danna</option>
+                                    <option value="PF4">Lomo de cerdo</option>
+                                    <option value="PF5">Albóndiga en Salsa de Tres Chiles</option>
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="button" value="Añadir otro plato fuerte" id="agregarBtnFuerte" onclick="agregarFuerte()" class="btn btn-primary" style="width: 70%; height: 50px;">
+                        </div>
+                    </div>
+                    <!--SECCION PARA AGREGAR POSTRES-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-left mt-4" style="font-size:x-large;">Postres</p>
+                        </div>
+                    </div>
+                    <div id="input-postres">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="label-input d-block" for="fuerte1">Postre 1</label>
+                                <input type="text" list="postresList1"  class="form-control d-inline" name="postre1" id="postre1" style="width: 80%;" required>
+                                <datalist id="postresList1"> 
+                                    <option value="PP1">Coulant de chocolate</option>
+                                    <option value="PP2">Migajón de palo cortado</option>
+                                    <option value="PP3">Tarta de yogurt y frutos del bosque</option>
+                                    <option value="PP4">Cheesecake de dulce de leche</option>
+                                    <option value="PP5">Tiramisu</option>
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="button" value="Añadir otro postre" id="agregarBtnPostre" onclick="agregarPostre()" class="btn btn-primary" style="width: 70%; height: 50px;">
+                        </div>
+                    </div>
+                    <!--METODO DE PAGO-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="text-left mt-4" style="font-size:x-large;">Metodos de Pago</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label class="label-input d-block" for="fuerte1">Metodo de pago</label>
+                            <input type="text" list="metodosPago"  class="form-control d-inline" name="metodo_pago" id="metodo_pago" style="width: 80%;" required>
+                            <datalist id="metodosPago">
+                                <option value="Efectivo">Pago con dinero fisico</option>
+                                <option value="Tarjeta">Pago con tarjeta debito o credito</option>
+                                <option value="Online">Pago a traves de pasarela online</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <!--BOTON DE SUBMIT DEL FORMULARIO-->
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                        <input type="submit" value="Enviar pedido" class="btn btn-primary mt-5"  style="width: 100%; height: 50px;">
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "reservaciones/base.html" %}
+
+{% block title %}Crear Reservacion{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="h1 font-weight-bold text-center mt-5">Crear Reservacion</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/crear_reservacion/" style="display: flex; flex-flow: row wrap; margin-top: 50px;" method="post">{% csrf_token %}
+                <div class="col-md-4">
+                    <input type="date" class="form-control mx-auto" style="height: 50px;" placeholder="Fecha reserva" name="fecha_reserva" id="fecha_reserva" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="time" class="form-control mx-auto" style="height: 50px;" placeholder="Hora reserva" name="hora_reserva" id="hora_reserva" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="number" class="form-control mx-auto" style="height: 50px;" placeholder="Cantidad de personas" name="numero_personas" id="numero_personas" required>
+                </div>
+                <button type="submit" class="btn btn-primary mx-auto mt-5" style="width: 50%;height: 50px;">Reservar</button>
+            </form>
+        </div>
+    </div>
+    {% if mensaje_resultado != '' %}
+    <div class="row">
+        <div class="mx-auto mt-5" style="width: 90%; color:black;">
+            <p><b>{{mensaje_resultado}}</b></p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

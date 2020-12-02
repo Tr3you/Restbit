@@ -1,0 +1,26 @@
+{% extends "reservaciones/base.html" %}
+
+{% block title %}Resumen pedido{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="h1 font-weight-bold text-center mt-5">¡Gracias por su pedido!</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="mx-auto mt-5" style="width: 80%;" ><span class="mt-5" style="font-weight: 700; font-size: 30px;">Numero de pedido: </span> <span style="color: #00B112; font-weight: 500;">{{numero_pedido}}</span></p>
+                <p class="mx-auto mt-3" style="width: 80%;" ><span class="mt-5" style="font-weight: 700; font-size: 30px;">Valor de cuenta: </span> <span style="color: #00B112; font-weight: 500;">${{total_cuenta}}</span></p>
+                <p class="mx-auto mt-3" style="width: 80%;" ><span class="mt-5" style="font-weight: 700; font-size: 30px;">Metodo de cobro: </span> <span style="color: #00B112; font-weight: 500;">{{metodo_pago}}</span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <a href="{% url 'Inicio' %}" class="btn btn-primary mx-auto mt-5" style="width: 100%;height: 50px;">Regresar al Inicio</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

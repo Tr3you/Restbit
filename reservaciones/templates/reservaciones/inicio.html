@@ -1,0 +1,72 @@
+{% extends "reservaciones/base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mx-auto my-4" style="width: 70%; height: 120px;">
+                    <div class="card-body">
+                      <h5 href class="card-title text-center"><b>Crear reservacion</b></h5>
+                      <a href="{% url 'Crear Reservacion' %}" class="btn btn-primary" style="width: 100%;">Crear</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mx-auto my-4" style="width: 70%;height: 120px;">
+                    <div class="card-body">
+                      <h5 class="card-title text-center"><b>Cancelar reservacion</b></h5>
+                      <a href="{% url 'Cancelar Reservacion' %}" class="btn btn-primary" style="width: 100%;">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <p style="margin-top: 30px;"><b>Reservaciones Pendientes</b></p>
+                {% if reservaciones %}
+                    {% for reservacion in reservaciones %}
+                    <div class="item-reserv">
+                        <p>Fecha:&nbsp;&nbsp;{{reservacion.fecha}}&nbsp;&nbsp;&nbsp;&nbsp;Hora:&nbsp;&nbsp;{{reservacion.hora}}&nbsp;&nbsp;&nbsp;&nbsp;No Personas:&nbsp;&nbsp;{{reservacion.numero_personas}}&nbsp;&nbsp;&nbsp;&nbsp;Codigo de reserva:&nbsp;&nbsp;{{reservacion.codigo_reserva}} </b></p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="item-reserv">
+                        <p>No hay reservaciones pendientes</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p style="margin-top: 30px;"><b>Pedidos </b></p>
+                {% if pedidos %}
+                    {% for pedido in pedidos %}
+                    <div class="item-reserv">
+                        <p>Numero pedido:&nbsp;&nbsp;{{pedido.numero_pedido}}&nbsp;&nbsp;&nbsp;&nbsp;Codigo plato:&nbsp;&nbsp;{{pedido.codigo_item.codigo_item}}&nbsp;&nbsp;&nbsp;&nbsp;Estado Pedido:&nbsp;&nbsp;{{pedido.estado_pedido}}...&nbsp;&nbsp;&nbsp;&nbsp;Valor plato:&nbsp;&nbsp;${{pedido.valor}} </b></p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="item-reserv">
+                        <p>No hay pedidos activos</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form action="/realizar_pedido/" style="display: flex; flex-flow: row wrap; margin-top: 50px; margin-bottom: 50px;" method="POST"> {% csrf_token %}
+                    <div class="col-md-6">
+                        <input type="number" placeholder="Codigo de reserva" class="form-control" style="width: 100%;height: 50px;"  aria-describedby="recomendacion" name="codigo_inicio" required>                       
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" id="btn-ini" class="btn btn-primary" style="width: 100%; height: 50px;" name="formulario-login">Realizar pedido</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

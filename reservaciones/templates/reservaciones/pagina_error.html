@@ -1,0 +1,17 @@
+{% extends "reservaciones/base.html" %}
+
+{% block title %}Error{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center mt-5" style="font-weight: 800; font-size: 70px;">Upss!</p>
+                <p class="text-center">El codigo de reserva ingresado es incorrecto verifiquelo y vuelva a intentarlo</p>
+            </div>
+        </div>
+        <div class="mx-auto" style="width: 90%;">
+            <button type="submit" class="btn btn-primary mx-auto mt-5" style="width: 100%;height: 50px;">Regresar</button>
+        </div>
+    </div>
+{% endblock %}
